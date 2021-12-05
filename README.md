@@ -15,6 +15,8 @@ The purpose of this app is to practise working with MySQL, Node.js, Inquirer and
 <br>
 [Link to the deployed app](https://)
 <br>
+[Link to the video guide for invoking the app from command line](https://drive.google)
+<br>
 <br>
 
 ## User Story
