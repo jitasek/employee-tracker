@@ -4,10 +4,11 @@ const prompts = require("./prompts");
 const db = require("./db");
 require("console.table");
 
-async function viewAllTitles() {
-  const titles = await db.viewAllTitles();
+async function viewAllRoles() {
+  //Get query result from database
+  const roles = await db.viewAllRoles();
 
-  console.table(titles);
+  console.table(roles);
 
-  //mainPrompt();
+  mainPrompt();
 }
