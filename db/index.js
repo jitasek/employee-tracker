@@ -52,11 +52,26 @@ class DB {
 
   // ADDING
 
-  addDepartment() {}
+  addDepartment() {
+    try {
+    } catch (err) {
+      console.log("Error: Department not inserted: " + err);
+    }
+  }
 
-  addRole() {}
+  addRole() {
+    try {
+    } catch (err) {
+      console.log("Error: Role not inserted: " + err);
+    }
+  }
 
-  addEmployee() {}
+  addEmployee() {
+    try {
+    } catch (err) {
+      console.log("Error: Employee not inserted: " + err);
+    }
+  }
 
   // UPDATING
 
