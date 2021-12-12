@@ -1,16 +1,16 @@
 module.exports = {
   mainPrompt: [
     {
-      type: "rawlist",
+      type: "list",
       name: "menuAction",
       message: "What would you like to do?",
       choices: [
-        "View all employees",
-        "View all roles",
         "View all departments",
-        "Add Employee",
+        "View all roles",
+        "View all employees",
         "Add Department",
         "Add Role",
+        "Add Employee",
         "Update employee role",
         "Exit",
       ],
@@ -22,7 +22,7 @@ module.exports = {
     {
       type: "input",
       name: "dptName",
-      message: "What department would you like to add?",
+      message: "What is the name of the department you would like to add?",
     },
   ],
   // Questions for add role
@@ -30,12 +30,17 @@ module.exports = {
     {
       type: "input",
       name: "title",
-      message: "What is the role title?",
+      message: "What is the name of the role?",
     },
     {
       type: "input",
       name: "salary",
       message: "What is the salary of this role?",
+    },
+    {
+      type: "input",
+      name: "department",
+      message: "Which department does the role belong to?",
     },
   ],
   // Questions for adding employee
@@ -50,5 +55,18 @@ module.exports = {
       name: "lastName",
       message: "What is the employee's last name?",
     },
+    {
+      type: "input",
+      name: "roleTitle",
+      message: "What is the employee's role?",
+    },
+    {
+      type: "input",
+      name: "manager",
+      message: "Who is the employee's manager?",
+    },
   ],
+  // Questions for updating employee role
+
+
 };

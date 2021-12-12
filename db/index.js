@@ -10,41 +10,55 @@ class DB {
   // VIEWING
 
   viewAllDepartments() {
-    try {
-      return this.connection.query(
-        `SELECT department_id AS ID, d.name AS Departments FROM department;`
-      );
-    } catch (err) {
-      if (err) throw err;
-    }
+    return this.connection.query(
+      `SELECT id_departments AS ID, d.name AS Departments FROM departments;`
+    );
   }
 
   viewAllRoles() {
+    return this.connection.query(
+      `SELECT id_roles AS ID, 
+      roles.title AS Title, 
+      departments.name AS Department, 
+      roles.salary AS Salary 
+      FROM roles ORDER BY id_roles;`
+    );
+  }
+
+  viewAllEmployees() {
+    return this.connection.query(
+      `SELECT e1.id AS ID, 
+      e1.first_name AS First_Name, 
+      e1.last_name AS Last_Name, 
+      roles.title AS Role, 
+      departments.name AS Department, 
+      roles.salary AS Salary, 
+      e2.last_name AS Manager FROM employees e1
+      LEFT JOIN employee e2 ON e1.manager_id = e2.id`
+    );
+  }
+
+  // GETTING
+
+  getDepartments() {
     try {
-      return this.connection.query(
-        `SELECT role_id AS ID, 
-            roles.title AS Title, 
-            department.name AS Department, 
-            roles.salary AS Salary 
-            FROM roles ORDER BY role_id;`
-      );
+      return this.connection.query(`SELECT * FROM departments;`);
     } catch (err) {
       if (err) throw err;
     }
   }
 
-  viewAllEmployees() {
+  getRoles() {
     try {
-      return this.connection.query(
-        `SELECT e1.employee_id AS ID, 
-            e1.first_name AS First_Name, 
-            e1.last_name AS Last_Name, 
-            roles.title AS Role, 
-            department.name AS Department, 
-            roles.salary AS Salary, 
-            e2.last_name AS Manager FROM employee e1 
-            LEFT JOIN roles ON e1.role_id = roles.id`
-      );
+      return this.connection.query(`SELECT * FROM roles;`);
+    } catch (err) {
+      if (err) throw err;
+    }
+  }
+
+  getEmployees() {
+    try {
+      return this.connection.query(`SELECT * FROM employees;`);
     } catch (err) {
       if (err) throw err;
     }
