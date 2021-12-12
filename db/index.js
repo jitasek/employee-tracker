@@ -52,15 +52,41 @@ class DB {
 
   // ADDING
 
-  addDepartment() {
+  addDepartment(dptName) {
     try {
+      this.connection.query(
+        "INSERT INTO department SET ?",
+        {
+          name: `${dptName}`,
+        },
+        function (err, res) {
+          if (err) throw err;
+          console.log(`\nSuccess adding ${dptName} department!`);
+          return res;
+        }
+      );
     } catch (err) {
       console.log("Error: Department not inserted: " + err);
     }
   }
 
-  addRole() {
+  addRole(title, departmentID, salary) {
     try {
+      this.connection.query(
+        "INSERT INTO roles SET ?",
+        {
+          title: `${title}`,
+          salary: `${salary}`,
+          department_id: `${departmentID}`,
+        },
+        function (err, res) {
+          if (err) throw err;
+          console.log(
+            `\nSuccess adding role with title:${title}, salary:${salary}, department ID:${departmentID}.`
+          );
+          return res;
+        }
+      );
     } catch (err) {
       console.log("Error: Role not inserted: " + err);
     }
