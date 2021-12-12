@@ -92,8 +92,26 @@ class DB {
     }
   }
 
-  addEmployee() {
+  addEmployee(firstName, lastName, roleID, departmentID, salary, manager) {
     try {
+      this.connection.query(
+        "INSERT INTO employee SET ?",
+        {
+          first_name: `${firstName}`,
+          last_name: `${lastName}`,
+          role_id: `${roleID}`,
+          department_id: `${departmentID}`,
+          salary: `${salary}`,
+          manager_id: `${manager}`,
+        },
+        function (err, res) {
+          if (err) throw err;
+          console.log(
+            `\nSuccess adding employee with firstName:${firstName}, lastName:${lastName}, roleId:${roleID}, department_id:${departmentID}, salary:${salary}, manager_id:${manager}.`
+          );
+          return res;
+        }
+      );
     } catch (err) {
       console.log("Error: Employee not inserted: " + err);
     }
