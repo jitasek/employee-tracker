@@ -2,9 +2,15 @@
 const inquirer = require("inquirer");
 const prompts = require("./prompts");
 const db = require("./db");
-const { mainPrompt } = require("./prompts");
+const {
+  addDepartment,
+  addRole,
+  addEmployee,
+  updateEmployeeRole,
+} = require("./db");
 require("console.table");
 
+// VIEWING
 async function viewAllDepartments() {
   const allDepartments = await db.viewAllDepartments();
   console.table(allDepartments); // show result on the console
@@ -27,3 +33,49 @@ async function viewAllEmployees() {
 
   mainPrompt();
 }
+
+// ADDING
+
+// UPDATING
+
+// MAIN PROMPT
+async function mainPrompt() {
+  const promptUser = await inquirer.prompt(prompts.mainPrompt);
+
+  switch (promptUser) {
+    case "View all departments":
+      viewAllDepartments();
+      break;
+
+    case "View all roles":
+      viewAllRoles();
+      break;
+
+    case "View all employees":
+      viewAllEmployees();
+      break;
+
+    case "Add Department":
+      addDepartment();
+      break;
+
+    case "Add Role":
+      addRole();
+      break;
+
+    case "Add Employee":
+      addEmployee();
+      break;
+
+    case "Update employee role":
+      updateEmployeeRole();
+      break;
+
+    case "Exit":
+      db.closeConnection();
+      console.log("Connection closed!");
+      break;
+  }
+}
+
+mainPrompt();

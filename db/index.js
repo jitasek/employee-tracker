@@ -69,7 +69,7 @@ class DB {
   addDepartment(dptName) {
     try {
       this.connection.query(
-        "INSERT INTO department SET ?",
+        "INSERT INTO departments SET ?",
         {
           name: `${dptName}`,
         },
@@ -91,7 +91,7 @@ class DB {
         {
           title: `${title}`,
           salary: `${salary}`,
-          department_id: `${departmentID}`,
+          id_departments: `${departmentID}`,
         },
         function (err, res) {
           if (err) throw err;
@@ -109,12 +109,12 @@ class DB {
   addEmployee(firstName, lastName, roleID, departmentID, salary, manager) {
     try {
       this.connection.query(
-        "INSERT INTO employee SET ?",
+        "INSERT INTO employees SET ?",
         {
           first_name: `${firstName}`,
           last_name: `${lastName}`,
-          role_id: `${roleID}`,
-          department_id: `${departmentID}`,
+          id_roles: `${roleID}`,
+          id_departments: `${departmentID}`,
           salary: `${salary}`,
           manager_id: `${manager}`,
         },
@@ -136,13 +136,13 @@ class DB {
   updateEmployeeRole(roleID, employeeID) {
     try {
       this.connection.query(
-        "UPDATE employee SET ? WHERE ?",
+        "UPDATE employees SET ? WHERE ?",
         [
           {
-            role_id: roleID,
+            id_roles: roleID,
           },
           {
-            employee_id: employeeID,
+            id: employeeID,
           },
         ],
         function (error) {
@@ -160,7 +160,7 @@ class DB {
     try {
       this.connection.end();
     } catch (error) {
-      console.log("Connection error: " + error);
+      console.log("Connection closing error: " + error);
     }
   }
 }
