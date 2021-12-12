@@ -119,7 +119,27 @@ class DB {
 
   // UPDATING
 
-  updateEmployeeRole() {}
+  updateEmployeeRole(roleID, employeeID) {
+    try {
+      this.connection.query(
+        "UPDATE employee SET ? WHERE ?",
+        [
+          {
+            role_id: roleID,
+          },
+          {
+            employee_id: employeeID,
+          },
+        ],
+        function (error) {
+          if (error) throw err;
+          console.log(`\nEmployee's role successfully updated!`);
+        }
+      );
+    } catch (err) {
+      if (err) throw err;
+    }
+  }
 
   // close connection and catch error
   closeConnection() {
