@@ -1,6 +1,8 @@
+DROP DATABASE IF EXISTS employees_db;
+CREATE DATABASE employees_db;
 USE employees_db;
 
-INSERT INTO departments(name)
+INSERT INTO department(name)
 VALUES ("Engineering"), ("Sales"), ("Finance"), ("Marketing"), ("Legal");
 
 

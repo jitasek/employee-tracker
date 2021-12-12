@@ -7,11 +7,19 @@ class DB {
     this.connection = connection;
   }
 
-  viewAllTitles() {
+  viewAllDepartments() {
     return this.connection.query(
-      `SELECT title.id, title.name AS Title, title.salary AS Salary FROM title ORDER BY title.id`
+      `SELECT id, name AS Departments FROM department;`
     );
   }
+
+  viewAllRoles() {
+    return this.connection.query(
+      `SELECT role.id, role.title AS Title, department.name AS Department, role.salary AS Salary FROM title ORDER BY role.id;`
+    );
+  }
+
+  
 
   // close connection and catch error
   closeConnection() {
