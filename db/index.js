@@ -7,19 +7,60 @@ class DB {
     this.connection = connection;
   }
 
+  // VIEWING
+
   viewAllDepartments() {
-    return this.connection.query(
-      `SELECT id, name AS Departments FROM department;`
-    );
+    try {
+      return this.connection.query(
+        `SELECT department_id AS ID, d.name AS Departments FROM department;`
+      );
+    } catch (err) {
+      if (err) throw err;
+    }
   }
 
   viewAllRoles() {
-    return this.connection.query(
-      `SELECT role.id, role.title AS Title, department.name AS Department, role.salary AS Salary FROM title ORDER BY role.id;`
-    );
+    try {
+      return this.connection.query(
+        `SELECT role_id AS ID, 
+            roles.title AS Title, 
+            department.name AS Department, 
+            roles.salary AS Salary 
+            FROM roles ORDER BY role_id;`
+      );
+    } catch (err) {
+      if (err) throw err;
+    }
   }
 
-  
+  viewAllEmployees() {
+    try {
+      return this.connection.query(
+        `SELECT e1.employee_id AS ID, 
+            e1.first_name AS First_Name, 
+            e1.last_name AS Last_Name, 
+            roles.title AS Role, 
+            department.name AS Department, 
+            roles.salary AS Salary, 
+            e2.last_name AS Manager FROM employee e1 
+            LEFT JOIN roles ON e1.role_id = roles.id`
+      );
+    } catch (err) {
+      if (err) throw err;
+    }
+  }
+
+  // ADDING
+
+  addDepartment() {}
+
+  addRole() {}
+
+  addEmployee() {}
+
+  // UPDATING
+
+  updateEmployeeRole() {}
 
   // close connection and catch error
   closeConnection() {
