@@ -3,7 +3,7 @@ CREATE DATABASE employees_db;
 USE employees_db;
 
 -- Table for department information
-CREATE TABLE departments(
+CREATE TABLE department (
 	department_id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(30),
     PRIMARY KEY(department_id)
@@ -11,7 +11,7 @@ CREATE TABLE departments(
 
 
 -- Table for roles information
-CREATE TABLE roles(
+CREATE TABLE roles (
 	role_id INT NOT NULL AUTO_INCREMENT,
     title VARCHAR(30) NOT NULL, 
     salary DECIMAL,
@@ -40,7 +40,7 @@ CREATE TABLE employee(
 
 
 
-SELECT * FROM departments;
+SELECT * FROM department;
 
 SELECT * FROM roles;
 
