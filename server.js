@@ -55,7 +55,7 @@ async function addNewRole() {
     departments.push(departmentsResult[i].name);
   }
 
-  // Dynamically push department name
+  // Push department name dynamically
   prompts.addRole.push({
     type: "list",
     name: "departmentName",
@@ -79,11 +79,72 @@ async function addNewRole() {
   viewAllRoles();
 }
 
-async function addNewEmployee() {}
+async function addNewEmployee() {
+  // Get all roles first
+  const rolesResult = await db.getRoles();
 
-// UPDATING
+  // filter role names from them
+  let roleNames = [];
+  for (let i = 0; i < rolesResult.length; i++) {
+    roleNames.push(rolesResult[i].title);
+  }
 
-// async function updateEmployeeRole() {}
+  // Get all employees
+  const employeeResult = await db.getEmployees();
+
+  // Filter only employee names (concat frist and last names)
+  let employeeNames = [];
+  for (let i = 0; i < employeeResult.length; i++) {
+    employeeNames.push(
+      employeeResult[i].first_name + " " + employeeResult[i].last_name
+    );
+  }
+
+  // Push role names in inquirer prompt array 'addEmployee' dynamically
+  prompts.addEmployee.push({
+    type: "list",
+    name: "roleName",
+    message: "What is role ?",
+    choices: roleNames,
+  });
+
+  // Push employee names in inquirer prompt array 'addEmployee' for getting manager name
+  prompts.addEmployee.push({
+    type: "list",
+    name: "managerName",
+    message: "What is manager name ?",
+    choices: employeeNames,
+  });
+
+  // Prompt user to add employee info
+  const { firstName, lastName, roleName, managerName } = await inquirer.prompt(
+    prompts.addEmployee
+  );
+
+  // Split manager name
+  const managerFirstName = managerName.split(" ")[0];
+  const managerLastName = managerName.split(" ")[1];
+
+  // Get role id of the selected role (use the selected roleName for it)
+  const roleId = rolesResult.filter((role) => role.title === roleName)[0].id;
+
+  // Get manager id (filter selected manager name)
+  const managerId = employeeResult.filter(
+    (employee) =>
+      employee.first_name === managerFirstName &&
+      employee.last_name === managerLastName
+  )[0].id;
+
+  // called function to execute query by passing employee details
+  const addEmployeeResult = await db.addEmployee(
+    firstName,
+    lastName,
+    roleId,
+    managerId
+  );
+
+  viewAllEmployees();
+}
 
 // MAIN PROMPT
 async function mainPrompt() {

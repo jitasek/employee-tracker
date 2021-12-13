@@ -66,7 +66,7 @@ class DB {
 
   // ADDING
 
-  addDepartment(dptName) {
+  addNewDepartment(dptName) {
     try {
       this.connection.query(
         "INSERT INTO departments SET ?",
@@ -84,7 +84,7 @@ class DB {
     }
   }
 
-  addRole(title, departmentID, salary) {
+  addNewRole(title, departmentID, salary) {
     try {
       this.connection.query(
         "INSERT INTO roles SET ?",
@@ -106,7 +106,7 @@ class DB {
     }
   }
 
-  addEmployee(firstName, lastName, roleID, departmentID, salary, manager) {
+  addNewEmployee(firstName, lastName, roleID, departmentID, salary, manager) {
     try {
       this.connection.query(
         "INSERT INTO employees SET ?",
