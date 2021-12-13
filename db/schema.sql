@@ -37,8 +37,8 @@ CREATE TABLE employees (
 );
 
 
--- SELECT * FROM department;
+SELECT * FROM department;
 
--- SELECT * FROM roles;
+SELECT * FROM roles;
 
--- SELECT * FROM employee;
+SELECT * FROM employee;

@@ -37,11 +37,11 @@ module.exports = {
       name: "salary",
       message: "What is the salary of this role?",
     },
-    {
-      type: "input",
-      name: "department",
-      message: "Which department does the role belong to?",
-    },
+    // {
+    //   type: "input",
+    //   name: "department",
+    //   message: "Which department does the role belong to?",
+    // },
   ],
   // Questions for adding employee
   addEmployee: [

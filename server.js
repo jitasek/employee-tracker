@@ -41,9 +41,43 @@ async function addDepartment() {
 
   // pass department info (name) into query function
   const result = await db.addDepartment(dptName);
+
+  viewAllDepartments();
 }
 
-async function addRole() {}
+async function addRole() {
+  // display the departments
+  const departmentsResult = await db.getDepartments();
+
+  // Fetch the department name from the departments overview (list)
+  let departments = [];
+  for (let i = 0; i < departmentsResult.length; i++) {
+    departments.push(departmentsResult[i].name);
+  }
+
+  // Dynamically push department name
+  prompts.addRole.push({
+    type: "list",
+    name: "departmentName",
+    message: "What is role's department Name ?",
+    choices: departments,
+  });
+
+  // Prompt user to add role details
+  const { roleTitle, roleSalary, departmentName } = await inquirer.prompt(
+    prompts.addRole
+  );
+
+  // filter and fetch department id from department name
+  const departmentID = departmentsResult.filter(
+    (res) => res.name === departmentName
+  )[0].id;
+
+  // called function to execute query by passing role details
+  const addRoleResult = await db.addRole(roleTitle, roleSalary, departmentID);
+
+  viewAllRoles();
+}
 
 async function addEmployee() {}
 
