@@ -35,7 +35,7 @@ async function viewAllEmployees() {
 }
 
 // ADDING
-async function addDepartment() {
+async function addNewDepartment() {
   // prompt user for department info (name)
   const dptName = await inquirer.prompt(prompts.addDepartment);
 
@@ -45,7 +45,7 @@ async function addDepartment() {
   viewAllDepartments();
 }
 
-async function addRole() {
+async function addNewRole() {
   // display the departments
   const departmentsResult = await db.getDepartments();
 
@@ -79,11 +79,11 @@ async function addRole() {
   viewAllRoles();
 }
 
-async function addEmployee() {}
+async function addNewEmployee() {}
 
 // UPDATING
 
-async function updateEmployeeRole() {}
+// async function updateEmployeeRole() {}
 
 // MAIN PROMPT
 async function mainPrompt() {
