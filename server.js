@@ -35,8 +35,21 @@ async function viewAllEmployees() {
 }
 
 // ADDING
+async function addDepartment() {
+  // prompt user for department info (name)
+  const dptName = await inquirer.prompt(prompts.addDepartment);
+
+  // pass department info (name) into query function
+  const result = await db.addDepartment(dptName);
+}
+
+async function addRole() {}
+
+async function addEmployee() {}
 
 // UPDATING
+
+async function updateEmployeeRole() {}
 
 // MAIN PROMPT
 async function mainPrompt() {
