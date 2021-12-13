@@ -13,9 +13,7 @@ A command-line app to manage a company's employee database, using Node.js, Inqui
 The purpose of this app is to practise working with MySQL, Node.js, Inquirer and more.
 <br>
 <br>
-[Link to the deployed app](https://)
-<br>
-[Link to the video guide for invoking the app from command line](https://drive.google)
+[Link to the video guide for invoking the app from command line - TBD](https://drive.google)
 <br>
 <br>
 
@@ -68,8 +66,4 @@ WHEN I choose to update an employee role, I am prompted to select an employee to
 
 <br>
 
-![Image](./abc.png)
-
-![Image](./)
-
-![Image](./)
+TBD
