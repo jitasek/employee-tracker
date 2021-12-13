@@ -11,7 +11,15 @@ class DB {
 
   viewAllDepartments() {
     return this.connection.query(
-      `SELECT id_departments AS ID, d.name AS Departments FROM departments;`
+      //`SELECT id_departments AS ID, d.name AS Departments FROM departments;`
+      "SELECT * FROM departments",
+      (err, res) => {
+        try {
+          console.table(res);
+        } catch (err) {
+          console.error(err.message);
+        }
+      }
     );
   }
 

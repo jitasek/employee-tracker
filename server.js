@@ -11,9 +11,9 @@ const {
 require("console.table");
 
 // VIEWING
-async function viewAllDepartments() {
+async function newViewAllDepartments() {
   const allDepartments = await db.viewAllDepartments();
-  console.table(allDepartments); // show result on the console
+  // console.table(allDepartments); // show result on the console
 
   mainPrompt();
 }
@@ -152,7 +152,7 @@ async function mainPrompt() {
 
   switch (promptUser) {
     case "View all departments":
-      viewAllDepartments();
+      newViewAllDepartments();
       break;
 
     case "View all roles":
