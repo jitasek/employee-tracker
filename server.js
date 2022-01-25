@@ -147,43 +147,47 @@ async function addNewEmployee() {
 }
 
 // MAIN PROMPT
-async function mainPrompt() {
-  const promptUser = await inquirer.prompt(prompts.mainPrompt);
+const mainPrompt = async () => {
+  let end = false;
 
-  switch (promptUser) {
-    case "View all departments":
-      newViewAllDepartments();
-      break;
+  while (!end) {
+    const promptUser = await inquirer.prompt(prompts.mainPrompt);
 
-    case "View all roles":
-      viewAllRoles();
-      break;
+    switch (promptUser.menuAction) {
+      case "View all departments":
+        newViewAllDepartments();
+        break;
 
-    case "View all employees":
-      viewAllEmployees();
-      break;
+      case "View all roles":
+        viewAllRoles();
+        break;
 
-    case "Add Department":
-      addDepartment();
-      break;
+      case "View all employees":
+        viewAllEmployees();
+        break;
 
-    case "Add Role":
-      addRole();
-      break;
+      case "Add Department":
+        addDepartment();
+        break;
 
-    case "Add Employee":
-      addEmployee();
-      break;
+      case "Add Role":
+        addRole();
+        break;
 
-    case "Update employee role":
-      updateEmployeeRole();
-      break;
+      case "Add Employee":
+        addEmployee();
+        break;
 
-    case "Exit":
-      db.closeConnection();
-      console.log("Connection closed!");
-      break;
+      case "Update employee role":
+        updateEmployeeRole();
+        break;
+
+      case "Exit":
+        db.closeConnection();
+        console.log("Connection closed!");
+        break;
+    }
   }
-}
+};
 
 mainPrompt();
